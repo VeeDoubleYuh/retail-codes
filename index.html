@@ -1,0 +1,1285 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>Shop Smart &ndash; Code Cheat Sheet</title>
+    <meta name="description" content="Looking for a code? Check here!">
+
+    <!-- Quickeners -->
+    <link rel="preload"
+          href="assets/images/shop-smart-logo.svg"
+          as="image"
+          type="image/svg+xml">
+    <link rel="preload"
+          href="assets/fonts/roboto--regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossorigin>
+    <link rel="preload"
+          href="assets/fonts/roboto--condensed-bold.woff2"
+          as="font"
+          type="font/woff2"
+          crossorigin>
+    <link rel="modulepreload"
+          href="assets/scripts/search.min.mjs"
+          as="script">
+
+    <!-- Styles -->
+    <style>
+        /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+        html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}
+    /* END OF NORMALIZE */
+    @font-face {
+        font-display: swap;
+        font-family:  "Roboto";
+        src:          url("assets/fonts/roboto--regular.woff2") format("woff2"),
+                      local("Roboto-Regular");
+    }
+    @font-face {
+        font-display: swap;
+        font-family:  "Roboto";
+        font-weight:  bold;
+        src:          url("assets/fonts/roboto--bold.woff2") format("woff2"),
+                      local("RobotoCondensed-Bold");
+    }
+    @font-face {
+        font-display: swap;
+        font-family:  "Roboto";
+        font-stretch: condensed;
+        src:          url("assets/fonts/roboto--condensed-regular.woff2") format("woff2"),
+                      local("Roboto-Regular");
+    }
+    @font-face {
+        font-display: swap;
+        font-family:  "Roboto";
+        font-stretch: condensed;
+        font-weight:  bold;
+        src:          url("assets/fonts/roboto--condensed-bold.woff2") format("woff2"),
+                      local("RobotoCondensed-Bold");
+    }
+    :root {
+        --color__green:        #188a45;
+        --color__red:          #d31531;
+        --color__yellow:       #f6ee33;
+        --color__gray--light:  #eee;
+        --color__gray--mid:    #ccc;
+        --color__gray--dark:   #333;
+        --color__shadow:       #3335;
+        --font__suffix:        "Helvetica New", "Helvetica Neue", Helvetica, system-ui, sans-serif;
+        --border__input:       2px solid var(--color__gray--dark);
+        --size__shadow:        0 0.25rem 0.35rem;
+        --size__shadow--small: 0 0.1rem 0.15rem;
+        --size__min-touch:     3rem;
+    }
+    *,
+    *:where(::before, ::after) {
+        box-sizing:      border-box;
+        scroll-behavior: smooth;
+    }
+    ::-webkit-scrollbar {
+        width: 0.75rem;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: #dedede;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #bbb;
+    }
+    html {
+        background-color: var(--color__gray--light);
+    }
+    body {
+        color:       var(--color__gray--dark);
+        font-family: Roboto, var(--font__suffix);
+        text-align:  center;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    button {
+        font-family: "Roboto Condensed", "Helvetica Condensed", var(--font__suffix);
+    }
+    h2,
+    h3,
+    h4 {
+        margin-block-end: 0.25em;
+    }
+    h3,
+    h4 {
+        margin-block-start: 0.5em;
+    }
+    h1 {
+        font-size: 2.5rem;
+        margin-block-start: 0;
+    }
+    h1 img {
+        display: block;
+        margin:  auto;
+        width:   min(100%, 15rem);
+    }
+    h2 {
+        font-size: 1.75rem;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+    h4 {
+        font-size: 1.3rem;
+    }
+    header {
+        padding-block-start: 2rem;
+    }
+    section {
+        margin:    2rem auto 0;
+        width:     30em;
+        max-width: 100%;
+    }
+    input,
+    button {
+        border-radius: 0.25rem;
+        box-shadow:    var(--size__shadow--small) var(--color__shadow);
+        font-size:     1.05em;
+        padding:       0.75rem 1rem;
+        min-height:    var(--size__min-touch);
+        min-width:     var(--size__min-touch);
+    }
+    input {
+        border: 1px solid var(--color__gray--dark);
+    }
+    button {
+        --user-select:       none;
+        border:              0;
+        -webkit-user-select: var(--user-select);
+        -moz-user-select:    var(--user-select);
+        -ms-user-select:     var(--user-select);
+        user-select:         var(--user-select);
+    }
+    table {
+        background-color: var(--color__gray--light);
+        border-collapse:  collapse;
+        position:         relative;
+        table-layout:     fixed;
+        text-align:       start;
+        width:            100%;
+    }
+    table:where(:not(.table--no-visuals)) {
+        box-shadow: var(--size__shadow--small) var(--color__shadow);
+    }
+    th,
+    td {
+        border:         1px solid var(--color__gray--dark);
+        padding:        0.5em;
+        vertical-align: top;
+    }
+    thead {
+        background-color: var(--color__gray--dark);
+        color:            var(--color__gray--light);
+    }
+    :where(thead, tbody) th {
+        text-align: start;
+    }
+    thead th:first-child {
+        text-align: end;
+    }
+    tbody tr:first-child td {
+        border-top: 0;
+    }
+    tbody :where(tr:nth-child(even)) {
+        background-color: var(--color__gray--mid);
+    }
+    tbody td:first-child {
+        text-align: end;
+    }
+    th:first-child {
+        width: 20%;
+    }
+    .search {
+        background-color: var(--color__gray--light);
+        box-shadow:       var(--size__shadow) var(--color__shadow);
+        margin: -1rem 0 -3.5rem;
+        padding:          0.5rem;
+        position:         sticky;
+        top:              0;
+        z-index:          1;
+    }
+    .search__input {
+        border:     var(--border__input);
+        box-shadow: var(--size__shadow--small) var(--color__shadow),
+                    inset var(--size__shadow--small) var(--color__shadow);
+        padding:    0.75rem;
+    }
+    .search__submit {
+        background-color: var(--color__red);
+        color:            white;
+    }
+    .search-nav {
+        margin-block-start: 0.5rem;
+    }
+    .button--secondary {
+        border: var(--border__input);
+        color: var(--color__gray--dark);
+    }
+    .button--secondary[disabled] {
+        background-color: #ccc;
+        box-shadow:       none;
+    }
+    .heading--banner {
+        background-color:       var(--color__green);
+        color:                  var(--color__gray--light);
+        margin-block-end:       0;
+        padding:                0.25em;
+        position:               relative;
+        -webkit-font-smoothing: antialiased; /* Light text with darker background */
+    }
+    table thead tr :is(td, th) {
+        --text-stroke:       unset;
+        -webkit-text-stroke: var(--text-stroke);
+        text-stroke:         var(--text-stroke);
+    }
+    .table--no-visuals > tbody > tr {
+        background-color: transparent;
+    }
+    .table--no-visuals > tbody > tr > td {
+        border: 0;
+    }
+    .code--organic {
+        color:       var(--color__red);
+        font-weight: bold;
+    }
+    .site__back-to-top {
+        bottom:   1rem;
+        position: fixed;
+        opacity:  0;
+        right:    1rem;
+        transition: opacity 0.15s linear;
+    }
+    .js-search-area * {
+        scroll-margin-top: 8rem;
+        scroll-snap-align: start;
+        scroll-snap-type:  y mandatory;
+    }
+    .js-highlighted {
+        background-color: var(--color__yellow);
+        color:            var(--color__gray--dark);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *:where(::before, ::after) {
+            scroll-behavior: initial;
+        }
+
+    }
+
+    @media (prefers-color-scheme: dark) {
+        @font-face {
+            font-display: swap;
+            font-family:  "Roboto";
+            font-style:   italic; /* Currently only used in dark theme. */
+            src:          url("assets/fonts/roboto--regular-italic.woff2") format("woff2"),
+                          local("Roboto-Italic");
+        }
+        /* Color names may no longer make sense when dark mode is active. */
+        :root {
+            --color__green:       #1fa155;
+            --color__red:         #d71536;
+            --color__yellow:      #29beb2;
+            --color__gray--light: #333;
+            --color__gray--mid:   #888;
+            --color__gray--dark:  #a7a7a7;
+            --color__shadow:      #111a;
+        }
+        ::-webkit-scrollbar-track {
+            background-color: #111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #222;
+        }
+        .search__input,
+        .button--secondary {
+            background-color: #222;
+            color:            var(--color__gray--dark);
+        }
+        .search__input::placeholder {
+            color: var(--color__gray--dark);
+        }
+        .button--secondary[disabled] {
+            background-color: #444;
+        }
+        :where(tr.code--organic:nth-child(even)) :where(td, th) {
+            --text-stroke:       0.03em var(--color__gray--light);
+            -webkit-text-stroke: var(--text-stroke);
+            text-stroke:         var(--text-stroke);
+        }
+        :where(:not(.table--no-visuals)) > tbody > :where(tr:nth-child(even)) {
+            background-color: var(--color__gray--mid);
+            color:            black;
+        }
+        .code--organic {
+            font-weight: initial;
+            font-style:  italic;
+        }
+        .js-highlighted {
+            border: 1px solid var(--color__gray--light);
+            color:  var(--color__gray--light);
+        }
+    }
+
+    @media (prefers-contrast: more) {
+
+        ::-webkit-scrollbar {
+            width: initial;
+        }
+        ::-webkit-scrollbar-track {
+            background-color: initial;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: initial;
+        }
+
+    }
+
+    @media (min-width: 30.125em) {
+
+        h1 img {
+            display:          initial;
+            margin-block-end: -0.8rem;
+        }
+
+        .search {
+            margin-bottom: -2rem;
+        }
+
+        .heading--banner {
+            background-color: transparent;
+            margin-bottom:    0.5em;
+        }
+        .heading--banner::before {
+            --skew-offset:    0.5rem;
+            background-color: var(--color__green);
+            bottom:           0;
+            content:          "";
+            left:             var(--skew-offset);
+            position:         absolute;
+            right:            var(--skew-offset);
+            top:              0;
+            transform:        skewX(-20deg);
+            z-index:          -1;
+        }
+
+    }
+    </style>
+
+</head>
+
+<body id="site__body">
+
+<header id="site__header">
+    <h1>
+        <img src="assets/images/shop-smart-logo.svg"
+             alt="Shop Smart&trade; Logo"
+             loading="eager">
+        Cheat Sheet
+    </h1>
+</header>
+
+<main id="site__main">
+
+    <form id="site__search-form"
+          class="site__search  search">
+        <input id="site__search"
+               class="search__input"
+               type="search"
+               placeholder="Whatcha lookin&apos; for?"
+               aria-label="Whatcha lookin&apos; for?"
+               aria-describedby="search__error"
+               autocomplete="off"
+               autocapitalize="off"
+               spellcheck="true"
+               mozactionhint="enter"
+               enterkeyhint="search"
+               autofocus
+               incremental
+               required>
+        <button id="site__search-button"
+                class="search__submit"
+                aria-controls="site__search"
+                type="button">Search</button>
+
+        <div id="search__nav"
+             class="search__nav  search-nav"
+             hidden>
+            <button id="site__search-clear"
+                    class="search-nav__area-button  button--secondary"
+                    aria-controls="site__search"
+                    type="button">Clear</button>
+
+            <button id="site__search-prev"
+                    class="search-nav__area-button  search-nav__button  button--secondary"
+                    rel="prev"
+                    aria-label="Previous Instance"
+                    aria-controls="site__search"
+                    type="button">←</button>
+            <button id="site__search-next"
+                    class="search-nav__area-button  search-nav__button  button--secondary"
+                    rel="next"
+                    aria-label="Next Instance"
+                    aria-controls="site__search"
+                    type="button">→</button>
+        </div>
+
+        <p id="search__error"
+           role="alert"
+           hidden>No matching items found.</p>
+
+    </form>
+
+    <section class="js-search-area">
+
+        <table>
+            <caption>
+                <h2 class="heading--banner">Most Common</h2>
+            </caption>
+
+            <thead>
+                <tr>
+                    <th scope="col">Code</th>
+                    <th scope="col">Item Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>4011</td>
+                    <td>Banana &ndash; Yellow</td>
+                </tr>
+                <tr>
+                    <td>4664</td>
+                    <td>Tomato &ndash; Vine</td>
+                </tr>
+                <tr>
+                    <td>4046</td>
+                    <td>Avocado &ndash; Hass/Black</td>
+                </tr>
+                <tr>
+                    <td>4730</td>
+                    <td>Potato &ndash; 5&#8239;lb Bag</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="js-search-area">
+        <h2 class="heading--banner">Produce</h2>
+
+        <!-- Fruit -->
+        <table class="table--no-visuals">
+
+            <caption>
+                <h3>Fruit</h3>
+            </caption>
+
+            <tbody>
+
+                <!-- Apples -->
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <caption>
+                                <h4>Apples</h4>
+                            </caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Item Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>4103</td>
+                                    <td>Apple &ndash; Braeburn/Large</td>
+                                </tr>
+                                <tr>
+                                    <td>4131</td>
+                                    <td>Apple &ndash; Fuji/Large</td>
+                                </tr>
+                                <tr class="code--organic">
+                                    <td>94131</td>
+                                    <td>Apple &ndash; Organic/Fuji/Large</td>
+                                </tr>
+                                <tr>
+                                    <td>4135</td>
+                                    <td>Apple &ndash; Gala/Large</td>
+                                </tr>
+                                <tr>
+                                    <td>4017</td>
+                                    <td>Apple &ndash; Granny Smith/Large</td>
+                                </tr>
+                                <tr>
+                                    <td>4135</td>
+                                    <td>Apple &ndash; Honey Crisp/Large</td>
+                                </tr>
+                                <tr>
+                                    <td>3294</td>
+                                    <td>Apple &ndash; Jazz</td>
+                                </tr>
+                                <tr>
+                                    <td>4130</td>
+                                    <td>Apple &ndash; Pink Lady/Large</td>
+                                </tr>
+                                <tr>
+                                    <td>4016</td>
+                                    <td>Apple &ndash; Red/Delicious/Large</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Avocados -->
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <caption>
+                                <h4>Avocados</h4>
+                            </caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Item Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>4046</td>
+                                    <td>Avocado &ndash; Hass/Black</td>
+                                </tr>
+                                <tr>
+                                    <td>4048</td>
+                                    <td>Avocado &ndash; Hass/Black/Large</td>
+                                </tr>
+                                <tr class="code--organic">
+                                    <td>94046</td>
+                                    <td>Avocado &ndash; Organic/Hass/Black</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Bananas -->
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <caption>
+                                <h4>Bananas</h4>
+                            </caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Item Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>4011</td>
+                                    <td>Banana &ndash; Yellow</td>
+                                </tr>
+                                <tr class="code--organic">
+                                    <td>94011</td>
+                                    <td>Banana &ndash; Yellow/Organic</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Berries -->
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <caption>
+                                <h4>Berries</h4>
+                            </caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Item Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>4045</td>
+                                    <td>Cherries</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Citrus -->
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <caption>
+                                <h4>Citrus</h4>
+                            </caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Item Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>4053</td>
+                                    <td>Lemon &ndash; Large</td>
+                                </tr>
+                                <tr>
+                                    <td>4048</td>
+                                    <td>Lime</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Grapes -->
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <caption>
+                                <h4>Grapes</h4>
+                            </caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Item Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>4022</td>
+                                    <td>Grapes &ndash; Green/Seedless</td>
+                                </tr>
+                                <tr>
+                                    <td>4023</td>
+                                    <td>Grapes &ndash; Red/Seedless</td>
+                                </tr>
+                                <tr>
+                                    <td>4635</td>
+                                    <td>Grapes &ndash; Sunset Red/SDLS</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Oranges -->
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <caption>
+                                <h4>Oranges</h4>
+                            </caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Item Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>4012</td>
+                                    <td>Orange &ndash; Navel/Large</td>
+                                </tr>
+                                <tr>
+                                    <td>4390</td>
+                                    <td>Orange &ndash; Navel/Choice/Medium</td>
+                                </tr>
+                                <tr>
+                                    <td>4389</td>
+                                    <td>Orange &ndash; Navel/Choice/Large</td>
+                                </tr>
+                                <tr>
+                                    <td>3107</td>
+                                    <td>Orange &ndash; Sunkist/Navel/Medium</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Melons -->
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <caption>
+                                <h4>Melons</h4>
+                            </caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Item Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>4050</td>
+                                    <td>Cantaloupe &ndash; Large</td>
+                                </tr>
+                                <tr>
+                                    <td>4034</td>
+                                    <td>Honeydew &ndash; Large</td>
+                                </tr>
+                                <tr>
+                                    <td>4031</td>
+                                    <td>Watermelon &ndash; Whole</td>
+                                </tr>
+                                <tr>
+                                    <td>4032</td>
+                                    <td>Watermelon &ndash; Whole/Seedless</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Tomatoes -->
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <caption>
+                                <h4>Tomatoes</h4>
+                            </caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Item Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>4799</td>
+                                    <td>Tomato &ndash; Hydroponic/Large</td>
+                                </tr>
+                                <tr>
+                                    <td>4087</td>
+                                    <td>Tomato &ndash; Roma</td>
+                                </tr>
+                                <tr>
+                                    <td>4664</td>
+                                    <td>Tomato &ndash; Vine</td>
+                                </tr>
+                                <tr>
+                                    <td>3151</td>
+                                    <td>Tomato &ndash; Vine/Ripe/Large</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Other -->
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <caption>
+                                <h4>Others</h4>
+                            </caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Item Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>4062</td>
+                                    <td>Cucumber &ndash; Green</td>
+                                </tr>
+
+                                <tr>
+                                    <td>4286</td>
+                                    <td>Grapefruit &ndash; Pink/Texas Rio</td>
+                                </tr>
+
+                                <tr>
+                                    <td>4030</td>
+                                    <td>Kiwi &ndash; Large</td>
+                                </tr>
+
+                                <tr>
+                                    <td>4378</td>
+                                    <td>Nectarine &ndash; Tree/Ripe/Large</td>
+                                </tr>
+
+                                <tr>
+                                    <td>4044</td>
+                                    <td>Peach &ndash; Tree/Ripe/Large</td>
+                                </tr>
+
+                                <tr>
+                                    <td>4409</td>
+                                    <td>Pear &ndash; Bartlett/Large</td>
+                                </tr>
+
+                                <tr>
+                                    <td>4430</td>
+                                    <td>Pineapple &ndash; Large</td>
+                                </tr>
+
+                                <tr>
+                                    <td>4735</td>
+                                    <td>Pumpkin &ndash; Regular</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <!-- Vegetables -->
+        <table class="table--no-visuals">
+
+            <caption>
+                <h3>Vegetables</h3>
+            </caption>
+
+            <tbody>
+
+                <!-- Corn -->
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <caption>
+                                <h4>Corn</h4>
+                            </caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Item Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>4077</td>
+                                    <td>Corn &ndash; White/Trimmed</td>
+                                </tr>
+                                <tr>
+                                    <td>4820</td>
+                                    <td>Corn &ndash; White/Untrimmed</td>
+                                </tr>
+                                <tr>
+                                    <td>4078</td>
+                                    <td>Corn &ndash; Yellow/Trimmed</td>
+                                </tr>
+                                <tr>
+                                    <td>4821</td>
+                                    <td>Corn &ndash; Yellow/Untrimmed</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Lettuce -->
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <caption>
+                                <h4>Lettuce</h4>
+                            </caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Item Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>4069</td>
+                                    <td>Cabbage &ndash; Green</td>
+                                </tr>
+                                <tr>
+                                    <td>4076</td>
+                                    <td>Lettuce &ndash; Green Leaf</td>
+                                </tr>
+                                <tr>
+                                    <td>4061</td>
+                                    <td>Lettuce &ndash; Iceberg Head</td>
+                                </tr>
+                                <tr>
+                                    <td>4075</td>
+                                    <td>Lettuce &ndash; Red Leaf</td>
+                                </tr>
+                                <tr>
+                                    <td>4640</td>
+                                    <td>Lettuce &ndash; Romaine</td>
+                                </tr>
+                                <tr>
+                                    <td>4090</td>
+                                    <td>Spinach &ndash; Regular/Bunch</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Onions -->
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <caption>
+                                <h4>Onions</h4>
+                            </caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Item Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>4068</td>
+                                    <td>Onion &ndash; Green</td>
+                                </tr>
+                                <tr>
+                                    <td>4082</td>
+                                    <td>Onion &ndash; Red</td>
+                                </tr>
+                                <tr>
+                                    <td>4166</td>
+                                    <td>Onion &ndash; Sweet</td>
+                                </tr>
+                                <tr>
+                                    <td>4163</td>
+                                    <td>Onion &ndash; Walla Walla</td>
+                                </tr>
+                                <tr>
+                                    <td>4663</td>
+                                    <td>Onion &ndash; White</td>
+                                </tr>
+                                <tr>
+                                    <td>4093</td>
+                                    <td>Onion &ndash; Yellow/Jumbo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Peppers -->
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <caption>
+                                <h4>Peppers</h4>
+                            </caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Item Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>4065</td>
+                                    <td>Pepper &ndash; Bell/Green/Large</td>
+                                </tr>
+                                <tr>
+                                    <td>4088</td>
+                                    <td>Pepper &ndash; Bell/Red</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Roots -->
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <caption>
+                                <h4>Roots</h4>
+                            </caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Item Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>4608</td>
+                                    <td>Garlic &ndash; Regular</td>
+                                </tr>
+                                <tr>
+                                    <td>4073</td>
+                                    <td>Potato &ndash; Red</td>
+                                </tr>
+                                <tr>
+                                    <td>4072</td>
+                                    <td>Potato &ndash; Russet</td>
+                                </tr>
+                                <tr>
+                                    <td>4730</td>
+                                    <td>Potato &ndash; Russet/5&#8239;lb Bag</td>
+                                </tr>
+                                <tr>
+                                    <td>4731</td>
+                                    <td>Potato &ndash; Russet/10&#8239;lb Bag</td>
+                                </tr>
+                                <tr>
+                                    <td>4091</td>
+                                    <td>Potato &ndash; Sweet/Regular</td>
+                                </tr>
+                                <tr>
+                                    <td>4727</td>
+                                    <td>Potato &ndash; Yukon Gold</td>
+                                </tr>
+                                <tr>
+                                    <td>4089</td>
+                                    <td>Radish &ndash; Bunch/Red</td>
+                                </tr>
+                                <tr>
+                                    <td>4074</td>
+                                    <td>Yam &ndash; Regular</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Others -->
+                <tr>
+                    <td colspan="2">
+                        <table>
+                            <caption>
+                                <h4>Others</h4>
+                            </caption>
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Item Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td>4084</td>
+                                    <td>Artichoke &ndash; Large</td>
+                                </tr>
+
+                                <tr>
+                                    <td>4080</td>
+                                    <td>Asparagus &ndash; Green/Small</td>
+                                </tr>
+
+                                <tr>
+                                    <td>4066</td>
+                                    <td>Bean &ndash; Green</td>
+                                </tr>
+
+                                <tr>
+                                    <td>3082</td>
+                                    <td>Broccoli &ndash; Crowns</td>
+                                </tr>
+                                <tr class="code--organic">
+                                    <td>94060</td>
+                                    <td>Broccoli &ndash; Organic</td>
+                                </tr>
+
+                                <tr>
+                                    <td>4562</td>
+                                    <td>Carrot &ndash; Loose</td>
+                                </tr>
+
+                                <tr>
+                                    <td>4079</td>
+                                    <td>Cauliflower &ndash; Small</td>
+                                </tr>
+
+                                <tr>
+                                    <td>4070</td>
+                                    <td>Celery &ndash; Blue Band</td>
+                                </tr>
+                                <tr class="code--organic">
+                                    <td>94070</td>
+                                    <td>Celery &ndash; Organic</td>
+                                </tr>
+
+                                <tr>
+                                    <td>4889</td>
+                                    <td>Cilantro &ndash; Chinese</td>
+                                </tr>
+
+                                <tr>
+                                    <td>4067</td>
+                                    <td>Squash &ndash; Zucchini</td>
+                                </tr>
+
+                                <tr>
+                                    <td>4383</td>
+                                    <td>Tangelo &ndash; Minneola</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+    <button id="site__back-to-top"
+            class="site__back-to-top  js-back-to-top  button--secondary"
+            type="button"
+            aria-label="Back to top of page.">↑</button>
+
+</main>
+
+<!-- Scripts -->
+<script type="module">
+    import {markItems as highlight, removeHighlight, gotoInstance} from "/ss-codes/assets/scripts/search.min.mjs";
+
+    /*
+     Search
+     */
+    const searchInput = document.getElementById("site__search"),
+        searchButton = document.getElementById("site__search-button"),
+        searchClear = document.getElementById("site__search-clear"),
+        searchPrev = document.getElementById("site__search-prev"),
+        searchNext = document.getElementById("site__search-next");
+
+    searchInput.addEventListener("keydown", e => {
+        if (e.code === "Enter" && searchInput.value.length > 0) {
+            e.preventDefault(); // Prevent form from submitting
+            highlight(searchInput.value);
+        }
+    });
+    // Incremental: If "search" event is supported (not FF)
+    if ("onsearch" in window) {
+
+        searchInput.addEventListener("search", () => {
+
+            if (searchInput.value !== "") {
+                highlight(searchInput.value);
+            }
+
+        });
+
+    }
+    searchButton.addEventListener("click", () => highlight(searchInput.value));
+
+    /*
+     Navigation
+     */
+    searchPrev.addEventListener("click", () => gotoInstance("prev"));
+    searchNext.addEventListener("click", () => gotoInstance("next"));
+
+    /*
+     Reset Search
+     */
+    // If "search" event is supported (not FF)
+    if ("onsearch" in window) {
+
+        searchInput.addEventListener("search", () => {
+
+            if (searchInput.value === "") {
+                removeHighlight();
+            }
+
+        });
+
+    }
+    // Implement custom "X" button (Firefox)
+    // TODO
+    else {
+        alert("not supported");
+    }
+    searchClear.addEventListener("click", () => {
+
+        if (searchInput.value !== "") {
+            searchInput.value = "";
+            removeHighlight();
+        }
+
+    });
+
+    /*
+        ==================
+        Back-to-Top Button
+        ==================
+    */
+    // Initial credit: https://javascript.info/task/updown-button
+    const backToTop = document.getElementById("site__back-to-top"),
+        backToTopOpacity = getComputedStyle(backToTop).getPropertyValue("opacity");
+
+    backToTop.addEventListener("click", () => {
+        window.scrollTo(pageXOffset, 0);
+        document.getElementsByTagName("main")[0].focus({preventScroll: true}); // Move focus back to top of the main element
+    });
+    window.addEventListener("scroll", () => {
+        debounce(toggleArrow(), 200)
+    });
+
+    /**
+     * Show/Hide back-to-top button
+     * */
+    function toggleArrow() {
+        if (pageYOffset < document.documentElement.clientHeight && backToTopOpacity !== 0) {
+            backToTop.style.opacity = "0";
+        }
+        else {
+            backToTop.style.opacity = "1";
+        }
+    }
+
+    /**
+     * Debounce
+     * Credit: https://chrisboakes.com/how-a-javascript-debounce-function-works/
+     * @param callback
+     * @param wait
+     * @returns {(function(...[*]=): void)|*}
+     */
+    function debounce (callback, wait) {
+        let timeout;
+        return (...args) => {
+            const context = this;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => callback.apply(context, args), wait);
+        };
+    }
+</script>
+
+</body>
+
+</html>
