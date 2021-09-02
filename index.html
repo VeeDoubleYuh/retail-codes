@@ -291,7 +291,7 @@
             --color__red:         #d71536;
             --color__yellow:      #29beb2;
             --color__gray--light: #333;
-            --color__gray--mid:   #888;
+            --color__gray--mid:   #444;
             --color__gray--dark:  #a7a7a7;
             --color__shadow:      #111a;
         }
@@ -313,13 +313,13 @@
             background-color: #444;
         }
         :where(tr.code--organic:nth-child(even)) :where(td, th) {
-            --text-stroke:       0.03em var(--color__gray--light);
+            --text-stroke:       0.01em var(--color__gray--light);
             -webkit-text-stroke: var(--text-stroke);
             text-stroke:         var(--text-stroke);
         }
         :where(:not(.table--no-visuals)) > tbody > :where(tr:nth-child(even)) {
             background-color: var(--color__gray--mid);
-            color:            black;
+            color:            var(--color__gray--dark);
         }
         .code--organic {
             font-weight: initial;
