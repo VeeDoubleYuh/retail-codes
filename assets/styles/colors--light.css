@@ -35,3 +35,12 @@
     border: 0;
     color:  var(--color__gray--dark);
 }
+
+@media (prefers-contrast: more) {
+
+    :root {
+        --color__gray--light: #fff;
+        --color__gray--dark:  #000;
+    }
+
+}
