@@ -1,0 +1,37 @@
+:root {
+    --color__green:       #188a45;
+    --color__red:         #d31531;
+    --color__yellow:      #f6ee33;
+    --color__gray--light: #eee;
+    --color__gray--mid:   #ccc;
+    --color__gray--dark:  #333;
+    --color__shadow:      #3335;
+}
+::-webkit-scrollbar-track {
+    background-color: #dedede;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #bbb;
+}
+.search__input,
+.button--secondary {
+    background-color: white;
+}
+.button--secondary[disabled] {
+    background-color: #ccc;
+}
+:where(tr.code--organic:nth-child(even)) :where(td, th) {
+    --text-stroke: 0.01em var(--color__gray--dark);
+}
+:where(:not(.table--no-visuals)) > tbody > :where(tr:nth-child(even)) {
+    background-color: var(--color__gray--mid);
+    color:            var(--color__gray--dark);
+}
+.code--organic {
+    font-weight: bold;
+    font-style:  initial;
+}
+.js-highlighted {
+    border: 0;
+    color:  var(--color__gray--dark);
+}
