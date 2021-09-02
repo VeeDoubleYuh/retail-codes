@@ -15,6 +15,14 @@
           as="image"
           type="image/svg+xml">
     <link rel="preload"
+          href="assets/styles/colors--light.css"
+          as="style"
+          media="(prefers-color-scheme: light)">
+    <link rel="preload"
+          href="assets/styles/colors--dark.css"
+          as="style"
+          media="(prefers-color-scheme: dark)">
+    <link rel="preload"
           href="assets/fonts/roboto--regular.woff2"
           as="font"
           type="font/woff2"
@@ -24,6 +32,9 @@
           as="font"
           type="font/woff2"
           crossorigin>
+    <link rel="modulepreload"
+          href="assets/scripts/user-settings.min.mjs"
+          as="script">
     <link rel="modulepreload"
           href="assets/scripts/search.min.mjs"
           as="script">
@@ -62,13 +73,6 @@
                       local("RobotoCondensed-Bold");
     }
     :root {
-        --color__green:        #188a45;
-        --color__red:          #d31531;
-        --color__yellow:       #f6ee33;
-        --color__gray--light:  #eee;
-        --color__gray--mid:    #ccc;
-        --color__gray--dark:   #333;
-        --color__shadow:       #3335;
         --font__suffix:        "Helvetica New", "Helvetica Neue", Helvetica, system-ui, sans-serif;
         --border__input:       2px solid var(--color__gray--dark);
         --size__shadow:        0 0.25rem 0.35rem;
@@ -82,12 +86,6 @@
     }
     ::-webkit-scrollbar {
         width: 0.75rem;
-    }
-    ::-webkit-scrollbar-track {
-        background-color: #dedede;
-    }
-    ::-webkit-scrollbar-thumb {
-        background-color: #bbb;
     }
     html {
         background-color: var(--color__gray--light);
@@ -189,14 +187,19 @@
     tbody tr:first-child td {
         border-top: 0;
     }
-    tbody :where(tr:nth-child(even)) {
-        background-color: var(--color__gray--mid);
-    }
     tbody td:first-child {
         text-align: end;
     }
     th:first-child {
         width: 20%;
+    }
+    :where(tr.code--organic:nth-child(even)) :where(td, th) {
+        -webkit-text-stroke: var(--text-stroke);
+        text-stroke:         var(--text-stroke);
+     }
+    :where(:not(.table--no-visuals)) > tbody > :where(tr:nth-child(even)) {
+        background-color: var(--color__gray--mid);
+        color:            var(--color__gray--dark);
     }
     .search {
         background-color: var(--color__gray--light);
@@ -225,8 +228,7 @@
         color: var(--color__gray--dark);
     }
     .button--secondary[disabled] {
-        background-color: #ccc;
-        box-shadow:       none;
+        box-shadow: none;
     }
     .heading--banner {
         background-color:       var(--color__green);
@@ -248,8 +250,7 @@
         border: 0;
     }
     .code--organic {
-        color:       var(--color__red);
-        font-weight: bold;
+        color: var(--color__red);
     }
     .site__back-to-top {
         bottom:   1rem;
@@ -265,7 +266,6 @@
     }
     .js-highlighted {
         background-color: var(--color__yellow);
-        color:            var(--color__gray--dark);
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -277,70 +277,16 @@
 
     }
 
-    @media (prefers-color-scheme: dark) {
-        @font-face {
-            font-display: swap;
-            font-family:  "Roboto";
-            font-style:   italic; /* Currently only used in dark theme. */
-            src:          url("assets/fonts/roboto--regular-italic.woff2") format("woff2"),
-                          local("Roboto-Italic");
-        }
-        /* Color names may no longer make sense when dark mode is active. */
-        :root {
-            --color__green:       #1fa155;
-            --color__red:         #d71536;
-            --color__yellow:      #29beb2;
-            --color__gray--light: #333;
-            --color__gray--mid:   #444;
-            --color__gray--dark:  #a7a7a7;
-            --color__shadow:      #111a;
-        }
-        ::-webkit-scrollbar-track {
-            background-color: #111;
-        }
-        ::-webkit-scrollbar-thumb {
-            background-color: #222;
-        }
-        .search__input,
-        .button--secondary {
-            background-color: #222;
-            color:            var(--color__gray--dark);
-        }
-        .search__input::placeholder {
-            color: var(--color__gray--dark);
-        }
-        .button--secondary[disabled] {
-            background-color: #444;
-        }
-        :where(tr.code--organic:nth-child(even)) :where(td, th) {
-            --text-stroke:       0.01em var(--color__gray--light);
-            -webkit-text-stroke: var(--text-stroke);
-            text-stroke:         var(--text-stroke);
-        }
-        :where(:not(.table--no-visuals)) > tbody > :where(tr:nth-child(even)) {
-            background-color: var(--color__gray--mid);
-            color:            var(--color__gray--dark);
-        }
-        .code--organic {
-            font-weight: initial;
-            font-style:  italic;
-        }
-        .js-highlighted {
-            border: 1px solid var(--color__gray--light);
-            color:  var(--color__gray--light);
-        }
-    }
-
     @media (prefers-contrast: more) {
 
         ::-webkit-scrollbar {
-            width: initial;
+            width: initial !important;
         }
         ::-webkit-scrollbar-track {
-            background-color: initial;
+            background-color: initial !important;
         }
         ::-webkit-scrollbar-thumb {
-            background-color: initial;
+            background-color: initial !important;
         }
 
     }
@@ -375,6 +321,14 @@
 
     }
     </style>
+    <link href="assets/styles/colors--light.css"
+          rel="stylesheet"
+          media="(prefers-color-scheme: light)"
+          class="js-color-default">
+    <link href="assets/styles/colors--dark.css"
+          rel="stylesheet"
+          media="(prefers-color-scheme: dark)"
+          class="js-color-default">
 
 </head>
 
@@ -1159,16 +1113,38 @@
 
     </section>
 
+</main>
+
+<footer>
+
     <button id="site__back-to-top"
             class="site__back-to-top  js-back-to-top  button--secondary"
             type="button"
             aria-label="Back to top of page.">↑</button>
 
-</main>
+    <section>
+        <h2>Settings</h2>
+
+        <button id="site__theme-switch"
+                class="site__theme-switch  js-theme-switch  button--secondary"
+                type="button"
+                aria-label="Switch Theme">
+            <img src="assets/images/paintbrush.svg"
+                 alt="Paintbrush"
+                 role="presentation"
+                 loading="lazy">
+        </button>
+    </section>
+
+</footer>
 
 <!-- Scripts -->
 <script type="module">
+    import UserSettings from "/retail-codes/assets/scripts/user-settings.min.mjs";
     import {markItems as highlight, removeHighlight, gotoInstance} from "/retail-codes/assets/scripts/search.min.mjs";
+    import themeUpdater from "/retail-codes/assets/scripts/theme-updater.min.mjs";
+
+    ready(themeUpdater);
 
     /*
      Search
@@ -1277,6 +1253,31 @@
             clearTimeout(timeout);
             timeout = setTimeout(() => callback.apply(context, args), wait);
         };
+    }
+
+    /*
+     ==================
+     Theme Override
+     ==================
+     */
+    document.getElementById("site__theme-switch").addEventListener("click", UserSettings.updateTheme);
+
+    /*
+     ==================
+     Helpers
+     ==================
+     */
+    /**
+     * Vanilla Ready
+     * @param fn
+     */
+    function ready (fn) {
+        if ("loading" !== document.readyState) {
+            fn();
+        }
+        else {
+            document.addEventListener("DOMContentLoaded", fn);
+        }
     }
 </script>
 

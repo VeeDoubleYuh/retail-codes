@@ -1,0 +1,48 @@
+/* Color names may no longer make sense when dark mode is active. */
+@font-face {
+    font-display: swap;
+    font-family:  "Roboto";
+    font-style:   italic; /* Currently only used in dark theme. */
+    src:          url("../fonts/roboto--regular-italic.woff2") format("woff2"),
+                  local("Roboto-Italic");
+}
+:root {
+    --color__green:       #1fa155;
+    --color__red:         #d71536;
+    --color__yellow:      #29beb2;
+    --color__gray--light: #333;
+    --color__gray--mid:   #444;
+    --color__gray--dark:  #a7a7a7;
+    --color__shadow:      #111a;
+}
+::-webkit-scrollbar-track {
+    background-color: #111;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #222;
+}
+.search__input,
+.button--secondary {
+    background-color: #222;
+}
+.search__input::placeholder {
+    color: var(--color__gray--dark);
+}
+.button--secondary[disabled] {
+    background-color: #444;
+}
+:where(tr.code--organic:nth-child(even)) :where(td, th) {
+    --text-stroke: 0.01em var(--color__gray--light);
+}
+:where(:not(.table--no-visuals)) > tbody > :where(tr:nth-child(even)) {
+    background-color: var(--color__gray--mid);
+    color:            var(--color__gray--dark);
+}
+.code--organic {
+    font-weight: initial;
+    font-style:  italic;
+}
+.js-highlighted {
+    border: 1px solid var(--color__gray--light);
+    color:  var(--color__gray--light);
+}
