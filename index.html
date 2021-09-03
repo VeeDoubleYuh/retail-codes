@@ -245,6 +245,10 @@
         position:               relative;
         -webkit-font-smoothing: antialiased; /* Light text with darker background */
     }
+    .heading--border {
+        border-bottom:     1px solid var(--color__gray--dark);
+        padding-block-end: 0.15em;
+    }
     table thead tr :is(td, th) {
         --text-stroke:       unset;
         -webkit-text-stroke: var(--text-stroke);
@@ -447,7 +451,7 @@
         <table class="table--no-visuals">
 
             <caption>
-                <h3>Fruit</h3>
+                <h3 class="heading--border">Fruit</h3>
             </caption>
 
             <tbody>
@@ -1072,7 +1076,7 @@
         <table class="table--no-visuals">
 
             <caption>
-                <h3>Vegetables</h3>
+                <h3 class="heading--border">Vegetables</h3>
             </caption>
 
             <tbody>

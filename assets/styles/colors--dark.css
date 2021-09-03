@@ -24,6 +24,7 @@
 .search__input,
 .button--secondary {
     background-color: #222;
+    color:            var(--color__gray--dark);
 }
 .search__input::placeholder {
     color: var(--color__gray--dark);
@@ -46,12 +47,9 @@
     border: 1px solid var(--color__gray--light);
     color:  var(--color__gray--light);
 }
-
 @media (prefers-contrast: more) {
-
     :root {
         --color__gray--light: #000;
         --color__gray--dark:  #fff;
     }
-
 }
