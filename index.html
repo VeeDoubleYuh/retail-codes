@@ -1682,7 +1682,8 @@
     /*
      Search
      */
-    const searchInput = document.getElementById("site__search"),
+    const searchForm = document.getElementById("site__search-form"),
+        searchInput = document.getElementById("site__search"),
         searchButton = document.getElementById("site__search-button"),
         searchClear = document.getElementById("site__search-clear"),
         searchPrev = document.getElementById("site__search-prev"),
@@ -1691,7 +1692,7 @@
     searchInput.addEventListener("keydown", e => {
         if (e.code === "Enter" && searchInput.value.length > 0) {
             e.preventDefault(); // Prevent form from submitting
-            highlight(searchInput.value);
+            highlight(searchInput.value, searchForm);
         }
     });
     // Incremental: If "search" event is supported (not FF)
@@ -1700,13 +1701,13 @@
         searchInput.addEventListener("search", () => {
 
             if (searchInput.value !== "") {
-                highlight(searchInput.value);
+                highlight(searchInput.value, searchForm);
             }
 
         });
 
     }
-    searchButton.addEventListener("click", () => highlight(searchInput.value));
+    searchButton.addEventListener("click", () => highlight(searchInput.value, searchForm));
 
     /*
      Navigation
