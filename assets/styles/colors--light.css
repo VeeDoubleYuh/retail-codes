@@ -16,6 +16,7 @@
 .search__input,
 .button--secondary {
     background-color: white;
+    color:            var(--color__gray--dark);
 }
 .button--secondary[disabled] {
     background-color: #ccc;
