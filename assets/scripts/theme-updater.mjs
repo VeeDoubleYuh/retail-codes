@@ -9,7 +9,7 @@ const overrideId = "js-color-override",
  * @param update
  */
 export default function (update = false) {
-    let href = "assets/styles/";
+    let href = "/retail-codes/assets/styles/";
 
     newColors.setAttribute("rel", "stylesheet");
     newColors.setAttribute("id", overrideId);

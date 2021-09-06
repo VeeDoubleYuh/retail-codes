@@ -12,32 +12,32 @@
 
     <!-- Quickeners -->
     <link rel="preload"
-          href="assets/images/shop-smart-logo.svg"
+          href="/retail-codes/assets/images/shop-smart-logo.svg"
           as="image"
           type="image/svg+xml">
     <link rel="preload"
-          href="assets/styles/colors--light.css"
+          href="/retail-codes/assets/styles/colors--light.css"
           as="style"
           media="(prefers-color-scheme: light)">
     <link rel="preload"
-          href="assets/styles/colors--dark.css"
+          href="/retail-codes/assets/styles/colors--dark.css"
           as="style"
           media="(prefers-color-scheme: dark)">
     <link rel="preload"
-          href="assets/fonts/roboto--regular.woff2"
+          href="/retail-codes/assets/fonts/roboto--regular.woff2"
           as="font"
           type="font/woff2"
           crossorigin>
     <link rel="preload"
-          href="assets/fonts/roboto--condensed-bold.woff2"
+          href="/retail-codes/assets/fonts/roboto--condensed-bold.woff2"
           as="font"
           type="font/woff2"
           crossorigin>
     <link rel="modulepreload"
-          href="assets/scripts/user-settings.min.mjs"
+          href="/retail-codes/assets/scripts/user-settings.min.mjs"
           as="script">
     <link rel="modulepreload"
-          href="assets/scripts/search.min.mjs"
+          href="/retail-codes/assets/scripts/search.min.mjs"
           as="script">
 
     <!-- Styles -->
@@ -48,21 +48,21 @@
     @font-face {
         font-display: swap;
         font-family:  "Roboto";
-        src:          url("assets/fonts/roboto--regular.woff2") format("woff2"),
+        src:          url("/retail-codes/assets/fonts/roboto--regular.woff2") format("woff2"),
                       local("Roboto-Regular");
     }
     @font-face {
         font-display: swap;
         font-family:  "Roboto";
         font-weight:  bold;
-        src:          url("assets/fonts/roboto--bold.woff2") format("woff2"),
+        src:          url("/retail-codes/assets/fonts/roboto--bold.woff2") format("woff2"),
                       local("RobotoCondensed-Bold");
     }
     @font-face {
         font-display: swap;
         font-family:  "Roboto";
         font-stretch: condensed;
-        src:          url("assets/fonts/roboto--condensed-regular.woff2") format("woff2"),
+        src:          url("/retail-codes/assets/fonts/roboto--condensed-regular.woff2") format("woff2"),
                       local("Roboto-Regular");
     }
     @font-face {
@@ -70,7 +70,7 @@
         font-family:  "Roboto";
         font-stretch: condensed;
         font-weight:  bold;
-        src:          url("assets/fonts/roboto--condensed-bold.woff2") format("woff2"),
+        src:          url("/retail-codes/assets/fonts/roboto--condensed-bold.woff2") format("woff2"),
                       local("RobotoCondensed-Bold");
     }
     :root {
@@ -332,15 +332,19 @@
 
     }
     </style>
-    <link href="assets/styles/colors--light.css"
+    <link href="/retail-codes/assets/styles/colors--light.css"
           rel="stylesheet"
           media="(prefers-color-scheme: light)"
           class="js-color-default">
-    <link href="assets/styles/colors--dark.css"
+    <link href="/retail-codes/assets/styles/colors--dark.css"
           rel="stylesheet"
           media="(prefers-color-scheme: dark)"
           class="js-color-default">
 
+    <!--
+        Search Console. You are not tracked on this site :)
+        Any possible future tracking will be opt-in <3
+    -->
     <meta name="google-site-verification"
           content="mHy-ea_Sm-Kd4C8dOVxca1AA2Kvie7o2AJErjQLLY-M" />
 
@@ -350,7 +354,7 @@
 
 <header id="site__header">
     <h1>
-        <img src="assets/images/shop-smart-logo.svg"
+        <img src="/retail-codes/assets/images/shop-smart-logo.svg"
              alt="Shop Smart&trade; Logo"
              loading="eager"
              height="162.9" width="975.9">
@@ -389,13 +393,13 @@
                     aria-controls="site__search"
                     type="button">Clear</button>
 
-            <button id="site__search-prev"
+            <button id="search__prev"
                     class="search-nav__area-button  search-nav__button  button--secondary"
                     rel="prev"
                     aria-label="Previous Instance"
                     aria-controls="site__search"
                     type="button">←</button>
-            <button id="site__search-next"
+            <button id="search__next"
                     class="search-nav__area-button  search-nav__button  button--secondary"
                     rel="next"
                     aria-label="Next Instance"
@@ -2059,7 +2063,7 @@
                 class="site__theme-switch  js-theme-switch  button--secondary"
                 type="button"
                 aria-label="Switch Theme">
-            <img src="assets/images/paintbrush.svg"
+            <img src="/retail-codes/assets/images/paintbrush.svg"
                  alt="Paintbrush"
                  role="presentation"
                  loading="lazy"
@@ -2083,9 +2087,9 @@
     const searchForm = document.getElementById("site__search-form"),
         searchInput = document.getElementById("site__search"),
         searchButton = document.getElementById("site__search-button"),
-        searchClear = document.getElementById("site__search-clear"),
-        searchPrev = document.getElementById("site__search-prev"),
-        searchNext = document.getElementById("site__search-next");
+        searchClear = document.getElementById("search__clear"),
+        searchPrev = document.getElementById("search__prev"),
+        searchNext = document.getElementById("search__next");
 
     searchInput.addEventListener("keydown", e => {
         if (e.code === "Enter" && searchInput.value.length > 0) {
