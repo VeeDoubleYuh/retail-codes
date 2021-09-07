@@ -44,24 +44,35 @@ function getRelevantElements (searchString) {
 /**
  * Highlight all instances of the given string in the page
  * @param searchString
+ * @param form
  */
-export function markItems (searchString) {
-    removeHighlight();
+export function markItems (searchString, form) {
 
-    relevantElements = getRelevantElements(searchString);
-    relevantElements.forEach(element => {
+    // If search field is not empty
+    if (form.reportValidity()) {
 
-        // If string is in a table cell, highlight entire row
-        if (element.nodeName === "TD" || element.nodeName === "TH") {
-            element = element.parentElement;
+        removeHighlight();
+
+        relevantElements = getRelevantElements(searchString);
+        relevantElements.forEach(element => {
+
+            // If string is in a table cell, highlight entire row
+            if (element.nodeName === "TD" || element.nodeName === "TH") {
+                element = element.parentElement;
+            }
+
+            element.classList.add("js-highlighted");
+            element.setAttribute("role", "mark");
+        });
+
+        toggleSearchError();
+        toggleSearchNav();
+
+        // If instances are found
+        if (instancesExist()) {
+            relevantElements[currentIndex].scrollIntoView(scrollBehavior);
         }
-
-        element.classList.add("js-highlighted");
-        element.setAttribute("role", "mark");
-    });
-
-    toggleSearchError();
-    toggleSearchNav();
+        currentIndex = 0;
 
     // If instances are found
     if (instancesExist()) {
@@ -69,7 +80,6 @@ export function markItems (searchString) {
 
         updateCounter();
     }
-    currentIndex = 0;
 
 }
 
