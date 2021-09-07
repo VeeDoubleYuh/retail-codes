@@ -63,13 +63,13 @@ export function markItems (searchString) {
     toggleSearchError();
     toggleSearchNav();
 
+    currentIndex = 0;
+    updateCounter();
+
     // If instances are found
     if (instancesExist()) {
         relevantElements[currentIndex].scrollIntoView(scrollBehavior);
-
-        updateCounter();
     }
-    currentIndex = 0;
 
 }
 
