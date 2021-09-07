@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <title>Shop Smart &ndash; Code Cheat Sheet</title>
-    <meta name="description" content="Looking for a Shop Smart code? Check here!">
+    <meta name="description" content="Looking for a Shop Smart PLU code? Check here!">
     <link rel="canonical" href="https://veedoubleyuh.github.io/retail-codes"/>
 
     <!-- Quickeners -->
@@ -230,6 +230,9 @@
     .search-nav {
         margin-block-start: 0.5rem;
     }
+    .search__counter {
+        margin-inline-end: 1rem;
+    }
     .button--secondary {
         border: var(--border__input);
         color: var(--color__gray--dark);
@@ -308,11 +311,9 @@
             display:          initial;
             margin-block-end: -0.8rem;
         }
-
         .search {
             margin-bottom: -2rem;
         }
-
         .heading--banner {
             background-color: transparent;
             margin-bottom:    0.5em;
@@ -328,6 +329,12 @@
             top:              0;
             transform:        skewX(-20deg);
             z-index:          -1;
+        }
+        .js-highlighted.heading--banner::before {
+            background-color: transparent;
+        }
+        .js-highlighted.heading--banner::before {
+            background-color: var(--color__yellow);
         }
 
     }
@@ -388,7 +395,15 @@
         <div id="search__nav"
              class="search__nav  search-nav"
              hidden>
-            <button id="site__search-clear"
+
+            <span id="search__counter"
+                  class="search__counter"
+                  aria-label="Instance 1 of ∞"
+                  hidden>
+                <span id="site__counter--current">1</span>&thinsp;/&thinsp;<span id="site__counter--max">∞</span>
+            </span>
+
+            <button id="search__clear"
                     class="search-nav__area-button  button--secondary"
                     aria-controls="site__search"
                     type="button">Clear</button>
@@ -405,6 +420,7 @@
                     aria-label="Next Instance"
                     aria-controls="site__search"
                     type="button">→</button>
+
         </div>
 
         <p id="search__error"
@@ -427,7 +443,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr class="code--universal">
                     <td>4011</td>
                     <td>Banana &ndash; Yellow</td>
                 </tr>
@@ -447,7 +463,7 @@
         </table>
 
     </section>
-
+  
     <!-- Food -->
     <section id="site__food"
              class="js-search-area">

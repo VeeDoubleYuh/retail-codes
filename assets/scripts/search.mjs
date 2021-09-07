@@ -1,10 +1,14 @@
 const relevantCodePieces = document.getElementsByClassName("js-search-area"),
     nav = document.getElementById("search__nav") || null, // Optional Item
+    counter = document.getElementById("search__counter") || null, // Optional Item
+    counterCurrent = document.getElementById("site__counter--current") || null, // Optional Item
+    counterMax = document.getElementById("site__counter--max") || null, // Optional Item
     searchError = document.getElementById("search__error"),
     scrollBehavior = {
         behavior: window.matchMedia("(prefers-reduced-motion: reduce)") ? "auto" : "smooth"
     };
 let relevantElements,
+    instanceAmount = getInstanceAmount(),
     currentIndex = 0;
 
 /**
@@ -30,6 +34,8 @@ function getRelevantElements (searchString) {
         }
 
     });
+
+    instanceAmount = getInstanceAmount(elementList);
 
     return elementList;
 
@@ -68,6 +74,11 @@ export function markItems (searchString, form) {
         }
         currentIndex = 0;
 
+    // If instances are found
+    if (instancesExist()) {
+        relevantElements[currentIndex].scrollIntoView(scrollBehavior);
+
+        updateCounter();
     }
 
 }
@@ -90,7 +101,9 @@ export function removeHighlight () {
 
     // Reset search
     relevantElements = null;
+    instanceAmount = 0;
     toggleSearchNav();
+    updateCounter();
     searchError.setAttribute("hidden", "");
 
 }
@@ -100,15 +113,30 @@ export function removeHighlight () {
  */
 export function gotoInstance (direction) {
 
-    if (direction === "next" && currentIndex < relevantElements.length) {
+    if (direction === "next" && currentIndex < instanceAmount) {
         currentIndex++;
         relevantElements[currentIndex].scrollIntoView(scrollBehavior);
+        updateCounter();
     }
     else if (direction === "prev" && currentIndex > 0) {
         currentIndex--;
         relevantElements[currentIndex].scrollIntoView(scrollBehavior);
+        updateCounter();
     }
 
+}
+
+function updateCounter () {
+    const currentInstance = currentIndex + 1;
+
+    counter.setAttribute("aria-label", `Instance ${currentIndex + 1} of ${instanceAmount}`);
+
+    if (counterCurrent.textContent !== `${currentInstance}`) {
+        counterCurrent.textContent = `${currentInstance}`;
+    }
+    if (counterMax.textContent !== `${instanceAmount}`) {
+        counterMax.textContent = `${instanceAmount}`;
+    }
 }
 
 /**
@@ -116,26 +144,27 @@ export function gotoInstance (direction) {
  */
 function toggleSearchNav () {
 
-    // Hide Nav
+    // Hide Nav and counter
     if (!instancesExist()) {
         nav.setAttribute("hidden", "");
+        counter.setAttribute("hidden", "");
     }
-    // Show Nav
+    // Show Nav and counter?
     else {
         const navButtons = [...document.getElementsByClassName("search-nav__button")],
             disabled = "disabled";
 
         // Keep actual navigation buttons disabled
-        if (relevantElements.length > 1) {
+        if (instanceAmount > 1) {
 
             // Enable navigation buttons
             navButtons.forEach(button => {
-                console.log(`Enabling ${button}`);
                 if (button.hasAttribute(disabled)) {
-                    console.log(button);
                     button.removeAttribute(disabled);
                 }
             })
+            // Show counter
+            counter.removeAttribute("hidden");
 
         }
         else {
@@ -146,6 +175,8 @@ function toggleSearchNav () {
                     button.setAttribute(disabled, "");
                 }
             })
+            // Hide counter
+            counter.setAttribute("hidden", "");
 
         }
 
@@ -175,5 +206,9 @@ function toggleSearchError () {
  * @returns {boolean}
  */
 function instancesExist () {
-    return !!(relevantElements && relevantElements.length !== 0);
+    return !!(relevantElements && instanceAmount > 0);
+}
+
+function getInstanceAmount (list = relevantElements) {
+    return list ? list.length : 0;
 }
