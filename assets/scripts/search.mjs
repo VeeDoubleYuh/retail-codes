@@ -1,6 +1,8 @@
 const relevantCodePieces = document.getElementsByClassName("js-search-area"),
     nav = document.getElementById("search__nav") || null, // Optional Item
     counter = document.getElementById("search__counter") || null, // Optional Item
+    counterCurrent = document.getElementById("site__counter--current") || null, // Optional Item
+    counterMax = document.getElementById("site__counter--max") || null, // Optional Item
     searchError = document.getElementById("search__error"),
     scrollBehavior = {
         behavior: window.matchMedia("(prefers-reduced-motion: reduce)") ? "auto" : "smooth"
@@ -64,6 +66,8 @@ export function markItems (searchString) {
     // If instances are found
     if (instancesExist()) {
         relevantElements[currentIndex].scrollIntoView(scrollBehavior);
+
+        updateCounter();
     }
     currentIndex = 0;
 
@@ -89,6 +93,7 @@ export function removeHighlight () {
     relevantElements = null;
     instanceAmount = 0;
     toggleSearchNav();
+    updateCounter();
     searchError.setAttribute("hidden", "");
 
 }
@@ -101,19 +106,27 @@ export function gotoInstance (direction) {
     if (direction === "next" && currentIndex < instanceAmount) {
         currentIndex++;
         relevantElements[currentIndex].scrollIntoView(scrollBehavior);
+        updateCounter();
     }
     else if (direction === "prev" && currentIndex > 0) {
         currentIndex--;
         relevantElements[currentIndex].scrollIntoView(scrollBehavior);
+        updateCounter();
     }
 
 }
 
 function updateCounter () {
-    let max = document.getElementById("site__counter--max").textContent;
+    const currentInstance = currentIndex + 1;
 
-    max = `${instanceAmount}`;
+    counter.setAttribute("aria-label", `Instance ${currentIndex + 1} of ${instanceAmount}`);
 
+    if (counterCurrent.textContent !== `${currentInstance}`) {
+        counterCurrent.textContent = `${currentInstance}`;
+    }
+    if (counterMax.textContent !== `${instanceAmount}`) {
+        counterMax.textContent = `${instanceAmount}`;
+    }
 }
 
 /**
