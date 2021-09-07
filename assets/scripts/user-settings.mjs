@@ -12,7 +12,7 @@ class UserSettings {
 
     // Update to opposite theme
     async updateTheme () {
-        const themeUpdater = await import("/retail-codes/assets/scripts/theme-updater.min.mjs");
+        const themeUpdater = await import("/retail-plu-codes/assets/scripts/theme-updater.min.mjs");
 
         themeUpdater.default(true);
     }

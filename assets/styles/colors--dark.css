@@ -21,6 +21,9 @@
 ::-webkit-scrollbar-thumb {
     background-color: #222;
 }
+a:where(:hover, :focus-within) {
+    color: var(--color__yellow);
+}
 .search__input,
 .button--secondary {
     background-color: #222;
