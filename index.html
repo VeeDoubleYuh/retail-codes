@@ -87,15 +87,24 @@
     ::-webkit-scrollbar {
         width: 0.75rem;
     }
+    html,
+    body {
+        height: 100%;
+    }
     html {
         background-color: var(--color__gray--light);
         line-height: 1.4;
     }
     body {
-        color:       var(--color__gray--dark);
-        font-family: Roboto, "Helvetica New", "Helvetica Neue", Helvetica, system-ui, sans-serif;
-        text-align:  center;
+        color:          var(--color__gray--dark);
+        display:        flex;
+        flex-direction: column;
+        font-family:    Roboto, "Helvetica New", "Helvetica Neue", Helvetica, system-ui, sans-serif;
+        text-align:     center;
     }
+        main {
+            flex: 1 0 auto;
+        }
     h1,
     h2,
     h3,
@@ -198,6 +207,10 @@
         align-items: center;
         display: flex;
         justify-content: center;
+    }
+    abbr,
+    dfn {
+        text-underline-offset: 0.25em;
     }
     table {
         background-color:       var(--color__gray--light);
@@ -2151,6 +2164,10 @@
         </button>
     </section>
 
+    <p>
+        <a href="/third-party-credits.html">Acknowledgements</a>
+    </p>
+
 </footer>
 
 <!-- Scripts -->
@@ -2159,7 +2176,7 @@
     import {markItems as highlight, removeHighlight, gotoInstance} from "/retail-plu-codes/assets/scripts/search.min.mjs";
     import themeUpdater from "/retail-plu-codes/assets/scripts/theme-updater.min.mjs";
 
-    ready(themeUpdater);
+    themeUpdater();
 
     /*
      Search
@@ -2277,24 +2294,6 @@
      ==================
      */
     document.getElementById("site__theme-switch").addEventListener("click", UserSettings.updateTheme);
-
-    /*
-     ==================
-     Helpers
-     ==================
-     */
-    /**
-     * Vanilla Ready
-     * @param fn
-     */
-    function ready (fn) {
-        if ("loading" !== document.readyState) {
-            fn();
-        }
-        else {
-            document.addEventListener("DOMContentLoaded", fn);
-        }
-    }
 </script>
 
 </body>
