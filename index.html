@@ -74,7 +74,6 @@
                       local("RobotoCondensed-Bold");
     }
     :root {
-        --font__suffix:        "Helvetica New", "Helvetica Neue", Helvetica, system-ui, sans-serif;
         --border__input:       2px solid var(--color__gray--dark);
         --size__shadow:        0 0.25rem 0.35rem;
         --size__shadow--small: 0 0.1rem 0.15rem;
@@ -94,15 +93,16 @@
     }
     body {
         color:       var(--color__gray--dark);
-        font-family: Roboto, var(--font__suffix);
+        font-family: Roboto, "Helvetica New", "Helvetica Neue", Helvetica, system-ui, sans-serif;
         text-align:  center;
     }
     h1,
     h2,
     h3,
     h4,
-    button {
-        font-family: "Roboto Condensed", "Helvetica Condensed", var(--font__suffix);
+    button,
+    summary {
+        font-stretch: condensed;
     }
     h2,
     h3,
@@ -132,7 +132,7 @@
     h4 {
         font-size: 1.3rem;
     }
-    caption :where(h2, h3, h4) {
+    caption :where(h2, h3, h4):where(.heading--banner) {
         margin-block-start: 0;
     }
     header {
@@ -149,7 +149,7 @@
     textarea,
     button,
     a,
-    details > summary {
+    summary {
         cursor: pointer;
     }
     input,
@@ -187,7 +187,7 @@
         contain-intrinsic-size: 8.87rem;
         content-visibility:     hidden;
     }
-    details > summary {
+    summary {
         align-items: center;
         display: flex;
         justify-content: center;
