@@ -87,16 +87,25 @@
     ::-webkit-scrollbar {
         width: 0.75rem;
     }
+    html,
+    body {
+        height: 100%;
+    }
     html {
         background-color: var(--color__gray--light);
         line-height: 1.4;
     }
     body {
-        color:       var(--color__gray--dark);
-        font-family: Roboto, "Helvetica New", "Helvetica Neue", Helvetica, system-ui, sans-serif;
-        text-align:  center;
+        color:          var(--color__gray--dark);
+        display:        flex;
+        flex-direction: column;
+        font-family:    Roboto, "Helvetica New", "Helvetica Neue", Helvetica, system-ui, sans-serif;
+        text-align:     center;
     }
-    h1,
+    main {
+        flex: 1 0 auto;
+    }
+    .site__title,
     h2,
     h3,
     h4,
@@ -113,15 +122,21 @@
     h4 {
         margin-block-start: 0.5em;
     }
-    h1 {
-        font-size:          2.5rem;
-        font-stretch:       condensed;
-        margin-block-start: 0;
-    }
-    h1 img {
+    .site__title {
+    font-size:          2.5rem;
+    font-stretch:       condensed;
+    margin-block-start: 0;
+}
+    .site__title .site__logo {
         display: block;
         margin:  auto;
-        width:   min(100%, 15rem);
+    }
+    .site__title .site__logo--shop-smart {
+        width: min(100%, 15rem);
+    }
+    .site__title .site__logo--rays {
+        margin-block-end: -2.5rem;
+        width:            min(100%, min(100%, 12.5rem));
     }
     h2 {
         font-size: 1.75rem;
@@ -132,7 +147,7 @@
     h4 {
         font-size: 1.3rem;
     }
-    caption :where(h2, h3, h4):where(.heading--banner) {
+    caption :where(.heading--banner) {
         margin-block-start: 0;
     }
     header {
@@ -146,26 +161,22 @@
         max-width:              100%;
     }
     input,
-    textarea,
-    button,
-    a,
-    summary {
-        cursor: pointer;
-    }
-    input,
+    select,
     button,
     details > summary {
         min-height:    var(--size__min-touch);
         min-width:     var(--size__min-touch);
     }
     input,
+    select,
     button {
         border-radius: 0.25rem;
         box-shadow:    var(--size__shadow--small) var(--color__shadow);
         font-size:     1.05em;
         padding:       0.75rem 1rem;
     }
-    input {
+    input,
+    select {
         border: 1px solid var(--color__gray--dark);
     }
     button {
@@ -175,6 +186,10 @@
         -moz-user-select:    var(--user-select);
         -ms-user-select:     var(--user-select);
         user-select:         var(--user-select);
+    }
+    a,
+    summary {
+        cursor: pointer;
     }
     a {
         color: var(--color__green);
@@ -191,6 +206,10 @@
         align-items: center;
         display: flex;
         justify-content: center;
+    }
+    abbr,
+    dfn {
+        text-underline-offset: 0.25em;
     }
     table {
         background-color:       var(--color__gray--light);
@@ -249,7 +268,8 @@
         top:               0;
         z-index:           1;
     }
-    .search__input {
+    .search__input,
+    .settings__store-select {
         border:     var(--border__input);
         box-shadow: var(--size__shadow--small) var(--color__shadow),
                     inset var(--size__shadow--small) var(--color__shadow);
@@ -311,6 +331,10 @@
         right:    1rem;
         transition: opacity 0.15s linear;
     }
+    .settings__store-select {
+        margin-inline-start: 1rem;
+        padding-block: 0;
+    }
     .js-search-area :where(h2, h3, h4, tr) {
         scroll-margin-top: 8rem;
         scroll-snap-align: start;
@@ -350,9 +374,17 @@
 
     @media (min-width: 30.125em) {
 
-        h1 img {
+        .site__title .site__logo {
             display:          initial;
+        }
+        .site__title .site__logo--shop-smart {
             margin-block-end: -0.8rem;
+        }
+        .site__title .site__logo--rays {
+            margin-block-end: -1.7rem;
+            position: relative;
+            width: 10rem;
+            z-index: 2;
         }
         section {
             contain-intrinsic-size: 8.87rem;
@@ -402,19 +434,22 @@
         Any possible future tracking will be opt-in <3
     -->
     <meta name="google-site-verification"
-          content="mHy-ea_Sm-Kd4C8dOVxca1AA2Kvie7o2AJErjQLLY-M" />
-    <meta name="msvalidate.01" content="35246733572B7C1A7F98006C9544763B" />
+          content="mHy-ea_Sm-Kd4C8dOVxca1AA2Kvie7o2AJErjQLLY-M"/>
+    <meta name="msvalidate.01"
+          content="35246733572B7C1A7F98006C9544763B"/>
 
 </head>
 
 <body id="site__body">
 
 <header id="site__header">
-    <h1>
+    <h1 class="site__title">
         <img src="/retail-plu-codes/assets/images/shop-smart-logo.svg"
-             alt="Shop Smart&trade; Logo"
+             alt="Shop Smart&trade;"
              loading="eager"
-             height="162.9" width="975.9">
+             height="162.9" width="975.9"
+             id="site__logo"
+             class="site__logo  site__logo--shop-smart">
         Cheat Sheet
     </h1>
 </header>
@@ -486,7 +521,7 @@
                 <p role="note">
                     Note: <a href="https://github.com/VeeDoubleYuh/retail-plu-codes/issues" target="_blank" rel="noopener">Work in progress.</a>
                     <br>
-                    Currently Shop Smart only.
+                    Currently Ray&apos;s&thinsp;/&thinsp;Shop Smart only.
                 </p>
             </div>
         </details>
@@ -509,20 +544,24 @@
             </thead>
             <tbody>
                 <tr class="code--universal">
+                    <td>4046</td>
+                    <td>Avocado &ndash; Hass/Black</td>
+                </tr>
+                <tr class="code--universal">
                     <td>4011</td>
                     <td>Banana &ndash; Yellow</td>
                 </tr>
                 <tr class="code--universal">
-                    <td>4664</td>
-                    <td>Tomato &ndash; Vine</td>
-                </tr>
-                <tr class="code--universal">
-                    <td>4046</td>
-                    <td>Avocado &ndash; Hass/Black</td>
+                    <td>4068</td>
+                    <td>Onion &ndash; Green</td>
                 </tr>
                 <tr>
                     <td>4730</td>
                     <td>Potato &ndash; 5&#8239;lb Bag</td>
+                </tr>
+                <tr class="code--universal">
+                    <td>4664</td>
+                    <td>Tomato &ndash; Vine</td>
                 </tr>
             </tbody>
         </table>
@@ -561,12 +600,12 @@
 
         </section>
 
-        <!-- Fresh Herbs -->
+        <!-- Donuts -->
         <section>
 
             <table>
                 <caption>
-                    <h2 class="heading--banner">Fresh Herbs</h2>
+                    <h2 class="heading--banner">Donuts</h2>
                 </caption>
 
                 <thead>
@@ -577,150 +616,27 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>3064</td>
-                        <td>Aloe Vera Leaves</td>
+                        <td>51114</td>
+                        <td>Donut &ndash; Apple Fritter</td>
                     </tr>
                     <tr>
-                        <td>4884</td>
-                        <td>Arugula</td>
+                        <td>51111</td>
+                        <td>Donut &ndash; Dozen</td>
                     </tr>
                     <tr>
-                        <td>4885</td>
-                        <td>Basil</td>
+                        <td>51123</td>
+                        <td>Donut &ndash; Large</td>
                     </tr>
                     <tr>
-                        <td>4886</td>
-                        <td>Basil &ndash; Opal</td>
-                    </tr>
-                    <tr>
-                        <td>4887</td>
-                        <td>Basil &ndash; Sweet</td>
-                    </tr>
-                    <tr>
-                        <td>3062</td>
-                        <td>Bay Leaves</td>
-                    </tr>
-                    <tr>
-                        <td>3084</td>
-                        <td>Chervil</td>
-                    </tr>
-                    <tr>
-                        <td>4888</td>
-                        <td>Chives</td>
-                    </tr>
-                    <tr class="code--universal">
-                        <td>4889</td>
-                        <td>Cilantro &ndash; Chinese</td>
-                    </tr>
-                    <tr>
-                        <td>4913</td>
-                        <td>Cinnamon Sticks</td>
-                    </tr>
-                    <tr>
-                        <td>4891</td>
-                        <td>Dill</td>
-                    </tr>
-                    <tr>
-                        <td>4892</td>
-                        <td>Dill &ndash; Baby</td>
-                    </tr>
-                    <tr>
-                        <td>4893</td>
-                        <td>Dill &ndash; Pickling</td>
-                    </tr>
-                    <tr>
-                        <td>3063</td>
-                        <td>Fennel Leaves</td>
-                    </tr>
-                    <tr>
-                        <td>4894</td>
-                        <td>Lemon Grass</td>
-                    </tr>
-                    <tr>
-                        <td>4895</td>
-                        <td>Marjoram</td>
-                    </tr>
-                    <tr>
-                        <td>4896</td>
-                        <td>Mint</td>
-                    </tr>
-                    <tr>
-                        <td>4897</td>
-                        <td>Oregano</td>
-                    </tr>
-                    <tr>
-                        <td>4898</td>
-                        <td>Oyster Plant</td>
-                    </tr>
-                    <tr class="code--universal">
-                        <td>4901</td>
-                        <td>Parsley Italian</td>
-                    </tr>
-                    <tr>
-                        <td>4911</td>
-                        <td>Peppermint</td>
-                    </tr>
-                    <tr>
-                        <td>4903</td>
-                        <td>Rosemary</td>
-                    </tr>
-                    <tr>
-                        <td>4904</td>
-                        <td>Sage</td>
-                    </tr>
-                    <tr>
-                        <td>3139</td>
-                        <td>Savory</td>
-                    </tr>
-                    <tr>
-                        <td>4905</td>
-                        <td>Sorrel</td>
-                    </tr>
-                    <tr>
-                        <td>4912</td>
-                        <td>Spearmint</td>
-                    </tr>
-                    <tr>
-                        <td>4906</td>
-                        <td>Tarragon</td>
-                    </tr>
-                    <tr>
-                        <td>4907</td>
-                        <td>Thyme</td>
+                        <td>51112</td>
+                        <td>Donut &ndash; Single</td>
                     </tr>
                 </tbody>
             </table>
 
         </section>
 
-        <!-- Nuts -->
-        <section>
-
-            <table>
-                <caption>
-                    <h2 class="heading--banner">Nuts</h2>
-                </caption>
-
-                <thead>
-                    <tr>
-                        <th scope="col">Code</th>
-                        <th scope="col">Item Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>25149</td>
-                        <td>Pistachio</td>
-                    </tr>
-                    <tr>
-                        <td>25130</td>
-                        <td>Mixed</td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </section>
-
+        <!-- Produce -->
         <section>
             <h2 class="heading--banner">Produce</h2>
 
@@ -1141,7 +1057,7 @@
                                         <td>Peach &ndash; White</td>
                                     </tr>
                                     <tr class="code--universal">
-                                        <td>4038/4044</td>
+                                        <td>4038&thinsp;/&thinsp;4044</td>
                                         <td>Peach &ndash; Yellow</td>
                                     </tr>
                                 </tbody>
@@ -1856,6 +1772,71 @@
 
         </section>
 
+        <!-- Fountain Sodas -->
+        <section>
+
+            <table>
+                <caption>
+                    <h2 class="heading--banner">Fountain Sodas</h2>
+                </caption>
+
+                <thead>
+                    <tr>
+                        <th scope="col">Code</th>
+                        <th scope="col">Item Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>51130</td>
+                        <td>Soda &ndash; 12&thinsp;oz</td>
+                    </tr>
+                    <tr>
+                        <td>51131</td>
+                        <td>Soda &ndash; 24&thinsp;oz</td>
+                    </tr>
+                    <tr>
+                        <td>51132</td>
+                        <td>Soda &ndash; 32&thinsp;oz</td>
+                    </tr>
+                    <tr>
+                        <td>51133</td>
+                        <td>Soda &ndash; 55&thinsp;oz</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+
+    </section>
+
+    <!-- Free Items -->
+    <section id="site__free"
+             class="js-search-area">
+
+        <table>
+            <caption>
+                <h2 class="heading--banner">Free Items</h2>
+            </caption>
+
+            <thead>
+                <tr>
+                    <th scope="col">Code</th>
+                    <th scope="col">Item Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>7345</td>
+                    <td>Free Chips (Deli)</td>
+                </tr>
+                <tr>
+                    <td>7417</td>
+                    <td>Free Coffee</td>
+                </tr>
+            </tbody>
+        </table>
+
     </section>
 
     <!-- Non Food -->
@@ -2127,7 +2108,8 @@
     <button id="site__back-to-top"
             class="site__back-to-top  js-back-to-top  button--secondary"
             type="button"
-            aria-label="Back to top of page.">↑</button>
+            aria-label="Back to top of page."
+            title="Back to top of page.">↑</button>
 
     <section>
         <h2>Settings</h2>
@@ -2135,34 +2117,53 @@
         <button id="site__theme-switch"
                 class="site__theme-switch  js-theme-switch  button--secondary"
                 type="button"
-                aria-label="Switch Theme">
+                aria-label="Switch Theme"
+                title="Switch Theme">
             <img src="/retail-plu-codes/assets/images/paintbrush.svg"
                  alt="Paintbrush"
                  role="presentation"
                  loading="lazy"
                  height="1" width="1">
         </button>
+
+        <select id="site__store-select"
+                class="settings__store-select"
+                aria-label="Change Store">
+            <option value="rays">Rays</option>
+            <option value="shop smart"
+                    selected>Shop Smart</option>
+        </select>
+
     </section>
+
+    <p>
+        <a href="/retail-plu-codes/third-party-credits.html">Acknowledgements</a>
+    </p>
 
 </footer>
 
 <!-- Scripts -->
 <script type="module">
-    import UserSettings from "/retail-plu-codes/assets/scripts/user-settings.min.mjs";
+    import UserSettings, {userSettings} from "/retail-plu-codes/assets/scripts/user-settings.min.mjs";
     import {markItems as highlight, removeHighlight, gotoInstance} from "/retail-plu-codes/assets/scripts/search.min.mjs";
     import themeUpdater from "/retail-plu-codes/assets/scripts/theme-updater.min.mjs";
 
-    ready(themeUpdater);
+    /*
+     On-Load
+     */
+    const currentStore = userSettings.getItem("store"),
+        storeSelector = document.getElementById("site__store-select");
+    if (storeSelector.value !== currentStore) {
+        storeSelector.value = currentStore;
+    }
+    themeUpdater();
+    UserSettings.updateStore();
 
     /*
      Search
      */
     const searchForm = document.getElementById("site__search-form"),
-        searchInput = document.getElementById("site__search"),
-        searchButton = document.getElementById("site__search-button"),
-        searchClear = document.getElementById("search__clear"),
-        searchPrev = document.getElementById("search__prev"),
-        searchNext = document.getElementById("search__next");
+        searchInput = document.getElementById("site__search");
 
     searchInput.addEventListener("keydown", e => {
         if (e.code === "Enter" && searchInput.value.length > 0) {
@@ -2182,13 +2183,13 @@
         });
 
     }
-    searchButton.addEventListener("click", () => highlight(searchInput.value, searchForm));
+    document.getElementById("site__search-button").addEventListener("click", () => highlight(searchInput.value, searchForm));
 
     /*
      Navigation
      */
-    searchPrev.addEventListener("click", () => gotoInstance("prev"));
-    searchNext.addEventListener("click", () => gotoInstance("next"));
+    document.getElementById("search__prev").addEventListener("click", () => gotoInstance("prev"));
+    document.getElementById("search__next").addEventListener("click", () => gotoInstance("next"));
 
     /*
      Reset Search
@@ -2210,7 +2211,7 @@
     else {
         alert("not supported");
     }
-    searchClear.addEventListener("click", () => {
+    document.getElementById("search__clear").addEventListener("click", () => {
 
         if (searchInput.value !== "") {
             searchInput.value = "";
@@ -2273,21 +2274,12 @@
 
     /*
      ==================
-     Helpers
+     Store Update
      ==================
      */
-    /**
-     * Vanilla Ready
-     * @param fn
-     */
-    function ready (fn) {
-        if ("loading" !== document.readyState) {
-            fn();
-        }
-        else {
-            document.addEventListener("DOMContentLoaded", fn);
-        }
-    }
+    storeSelector.addEventListener("change", function () {
+        UserSettings.updateStore(this.value);
+    });
 </script>
 
 </body>

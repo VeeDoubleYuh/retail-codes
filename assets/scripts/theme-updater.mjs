@@ -1,4 +1,4 @@
-import {userSettings} from "./user-settings.mjs";
+import {userSettings} from "/retail-plu-codes/assets/scripts/user-settings.mjs";
 
 const overrideId = "js-color-override",
     existingOverride = document.getElementById(overrideId),
