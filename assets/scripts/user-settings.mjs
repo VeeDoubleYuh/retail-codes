@@ -4,7 +4,11 @@ const theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "ligh
 class UserSettings {
 
     constructor () {
-        // Set theme
+        // Set default theme
+        if (!userSettings.getItem("store")) {
+            userSettings.setItem("store", "shop smart");
+        }
+        // Set default theme
         if (!userSettings.getItem("theme")) {
             userSettings.setItem("theme", theme);
         }
@@ -17,15 +21,13 @@ class UserSettings {
         themeUpdater.default(true);
     }
 
-}
+    // Update to chosen store
+    async updateStore (newStore = userSettings.getItem("store")) {
+        const storeUpdater = await import("/retail-plu-codes/assets/scripts/store-updater.min.mjs");
 
-/**
- * Get value from key.
- * @param key
- * @returns {string}
- */
-function getInfo (key) {
-    return userSettings.getItem(key);
+        storeUpdater.default(newStore);
+    }
+
 }
 
 export default UserSettings = new UserSettings();

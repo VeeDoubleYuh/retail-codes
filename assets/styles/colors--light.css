@@ -17,6 +17,7 @@ a:where(:hover, :focus-within) {
     color: var(--color__red);
 }
 .search__input,
+.settings__store-select,
 .button--secondary {
     background-color: white;
     color:            var(--color__gray--dark);
