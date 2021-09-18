@@ -245,6 +245,24 @@
         display: flex;
         justify-content: center;
     }
+    summary::before {
+        --arrow-background-size: cover;
+        --arrow-image:           url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="475" height="402" viewBox="0 0 475 402"><path d="M.5 0l475 201L.5 402l158-201L.5 0z"/></svg>');
+        aspect-ratio:            475 / 402;
+        background:              currentColor;
+        content:                 "";
+        flex:                    0 0 min(7.5%, 1rem);
+        margin-inline-end:       0.25rem;
+        transition:              transform 0.15s linear;
+        /* Masking instead on content or background-image allows color to be controlled via currentColor. */
+        -webkit-mask-size:       var(--arrow-background-size);
+        mask-size:               var(--arrow-background-size);
+        -webkit-mask-image:      var(--arrow-image);
+        mask-image:              var(--arrow-image);
+    }
+    details[open] summary::before {
+        transform: rotate(90deg);
+    }
     abbr,
     dfn {
         text-underline-offset: 0.25em;
