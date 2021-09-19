@@ -153,7 +153,7 @@
     h3,
     h4,
     button,
-    summary {
+    .search-details__summary {
         font-stretch: condensed;
     }
     h2,
@@ -204,9 +204,9 @@
     input,
     select,
     button,
-    details > summary {
-        min-height:    var(--size__min-touch);
-        min-width:     var(--size__min-touch);
+    summary {
+        min-height: var(--size__min-touch);
+        min-width:  var(--size__min-touch);
     }
     input,
     select,
@@ -235,9 +235,14 @@
     a {
         color: var(--color__green);
     }
+    figure {
+        margin: 0;
+    }
     img {
-        height: auto;
-        width: auto;
+        height:     auto;
+        max-height: 100%;
+        width:      auto;
+        max-width:  100%;
     }
     details:where(:not([open])) > *:where(:not(summary)) {
         contain-intrinsic-size: 8.87rem;
@@ -245,7 +250,9 @@
     }
     summary {
         align-items: center;
-        display: flex;
+        display:     flex;
+    }
+    .search-details__summary {
         justify-content: center;
     }
     summary::before {
@@ -285,8 +292,9 @@
     }
     th,
     td {
+        --cell-padding: 0.5em;
         border:         1px solid var(--color__gray--dark);
-        padding:        0.5em;
+        padding:        var(--cell-padding);
         vertical-align: top;
     }
     thead {
@@ -305,13 +313,17 @@
     tbody tr:first-child td {
         border-top: 0;
     }
-    tbody td:first-child {
-        text-align: end;
+    td {
+        height: var(--size__min-touch);
     }
     :where(tr.code--organic:nth-child(even)) :where(td, th) {
         -webkit-text-stroke: var(--text-stroke);
         text-stroke:         var(--text-stroke);
      }
+    :where(:not(.table--no-visuals)) tbody td:first-child {
+        padding-block-start: calc(1.5 * var(--cell-padding));
+        text-align: end;
+    }
     :where(:not(.table--no-visuals)) > tbody > :where(tr:nth-child(even)) {
         background-color: var(--color__gray--mid);
         color:            var(--color__gray--dark);
@@ -403,6 +415,12 @@
         contain-intrinsic-size: 2.4rem;
         content-visibility:     hidden;
         display:                none;
+    }
+    .js-search-area details {
+        margin-block-start: calc(-1 * var(--cell-padding));
+    }
+    .js-search-area details:where(:not([open])) {
+        margin-block-end: calc(-1 * var(--cell-padding));
     }
     .js-highlighted {
         background-color: var(--color__yellow);
@@ -604,15 +622,88 @@
             <tbody>
                 <tr class="code--universal">
                     <td>4046</td>
-                    <td>Avocado &ndash; Hass/Black</td>
+                    <td>
+                        <details>
+                            <summary>Avocado &ndash; Hass/Black</summary>
+                            <figure>
+                                <img src="/retail-plu-codes/assets/images/item-images/hass-avocado/hass-avocado--367w.webp"
+                                     srcset="/retail-plu-codes/assets/images/item-images/hass-avocado/hass-avocado--1101w.webp 1101w,
+                                             /retail-plu-codes/assets/images/item-images/hass-avocado/hass-avocado--1029w.webp 1029w,
+                                             /retail-plu-codes/assets/images/item-images/hass-avocado/hass-avocado--734w.webp 734w,
+                                             /retail-plu-codes/assets/images/item-images/hass-avocado/hass-avocado--686w.webp 686w,
+                                             /retail-plu-codes/assets/images/item-images/hass-avocado/hass-avocado--478w.webp 478w,
+                                             /retail-plu-codes/assets/images/item-images/hass-avocado/hass-avocado--367w.webp 367w,
+                                             /retail-plu-codes/assets/images/item-images/hass-avocado/hass-avocado--343w.webp 343w,
+                                             /retail-plu-codes/assets/images/item-images/hass-avocado/hass-avocado--239w.webp 239w"
+                                     sizes="(min-width: 30.125em) 343px, 74.42vw"
+                                     alt="Hass avocados"
+                                     height="2000" width="3400"
+                                     loading="lazy"
+                                     importance="low">
+                                <figcaption>
+                                    <p>Appearance: Dark green (maybe almost black) with bumpy skin. May be oval- or pear-shaped.</p>
+                                    <a href="https://en.wikipedia.org/wiki/Hass_avocado" target="_blank" rel="noopener">Wikipedia Article</a>
+                                </figcaption>
+                            </figure>
+                        </details>
+                    </td>
                 </tr>
                 <tr class="code--universal">
                     <td>4011</td>
-                    <td>Banana &ndash; Yellow</td>
+                    <td>
+                        <details>
+                            <summary>Banana &ndash; Yellow</summary>
+                            <figure>
+                                <img src="/retail-plu-codes/assets/images/item-images/yellow-banana/yellow-banana--367w.webp"
+                                     srcset="/retail-plu-codes/assets/images/item-images/yellow-banana/yellow-banana--1101w.webp 1101w,
+                                             /retail-plu-codes/assets/images/item-images/yellow-banana/yellow-banana--1029w.webp 1029w,
+                                             /retail-plu-codes/assets/images/item-images/yellow-banana/yellow-banana--734w.webp 734w,
+                                             /retail-plu-codes/assets/images/item-images/yellow-banana/yellow-banana--686w.webp 686w,
+                                             /retail-plu-codes/assets/images/item-images/yellow-banana/yellow-banana--478w.webp 478w,
+                                             /retail-plu-codes/assets/images/item-images/yellow-banana/yellow-banana--367w.webp 367w,
+                                             /retail-plu-codes/assets/images/item-images/yellow-banana/yellow-banana--343w.webp 343w,
+                                             /retail-plu-codes/assets/images/item-images/yellow-banana/yellow-banana--239w.webp 239w"
+                                     sizes="(min-width: 30.125em) 343px, 74.42vw"
+                                     alt="Yellow banana bunch"
+                                     height="734" width="550"
+                                     loading="lazy"
+                                     importance="low">
+                                <figcaption>
+                                    <p>Appearance: Elongated, yellow fruit with semi-tough peel. Browns as it ages. May be connected to others at the top to form a bunch.</p>
+                                    <a href="https://en.wikipedia.org/wiki/Banana" target="_blank" rel="noopener">Wikipedia Article</a>
+                                </figcaption>
+                            </figure>
+                        </details>
+                    </td>
                 </tr>
                 <tr class="code--universal">
                     <td>4068</td>
-                    <td>Onion &ndash; Green</td>
+                    <td>
+                        <details>
+                            <summary>Onion &ndash; Green</summary>
+                            <figure>
+                                <img src="/retail-plu-codes/assets/images/item-images/green-onion/green-onion--367w.webp"
+                                     srcset="/retail-plu-codes/assets/images/item-images/green-onion/green-onion--1101w.webp 1101w,
+                                             /retail-plu-codes/assets/images/item-images/green-onion/green-onion--1029w.webp 1029w,
+                                             /retail-plu-codes/assets/images/item-images/green-onion/green-onion--734w.webp 734w,
+                                             /retail-plu-codes/assets/images/item-images/green-onion/green-onion--686w.webp 686w,
+                                             /retail-plu-codes/assets/images/item-images/green-onion/green-onion--478w.webp 478w,
+                                             /retail-plu-codes/assets/images/item-images/green-onion/green-onion--367w.webp 367w,
+                                             /retail-plu-codes/assets/images/item-images/green-onion/green-onion--343w.webp 343w,
+                                             /retail-plu-codes/assets/images/item-images/green-onion/green-onion--239w.webp 239w"
+                                     sizes="(min-width: 30.125em) 343px, 74.42vw"
+                                     alt="Green onions"
+                                     height="2150" width="2365"
+                                     loading="lazy"
+                                     importance="low">
+                                <figcaption>
+                                    <p>Appearance: Elongated stalks with long green leaves on top, and small white bulbs on bottom.</p>
+                                    <p>AKA: Scallions, spring onions, or sibies.</p>
+                                    <a href="https://en.wikipedia.org/wiki/Scallion" target="_blank" rel="noopener">Wikipedia Article</a>
+                                </figcaption>
+                            </figure>
+                        </details>
+                    </td>
                 </tr>
                 <tr>
                     <td>4730</td>
