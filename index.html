@@ -207,6 +207,24 @@
         display: flex;
         justify-content: center;
     }
+    summary::before {
+        --arrow-background-size: cover;
+        --arrow-image:           url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="475" height="402" viewBox="0 0 475 402"><path d="M.5 0l475 201L.5 402l158-201L.5 0z"/></svg>');
+        aspect-ratio:            475 / 402;
+        background:              currentColor;
+        content:                 "";
+        flex:                    0 0 min(7.5%, 1rem);
+        margin-inline-end:       0.25rem;
+        transition:              transform 0.15s linear;
+        /* Masking instead on content or background-image allows color to be controlled via currentColor. */
+        -webkit-mask-size:       var(--arrow-background-size);
+        mask-size:               var(--arrow-background-size);
+        -webkit-mask-image:      var(--arrow-image);
+        mask-image:              var(--arrow-image);
+    }
+    details[open] summary::before {
+        transform: rotate(90deg);
+    }
     abbr,
     dfn {
         text-underline-offset: 0.25em;
@@ -521,7 +539,7 @@
                 <p role="note">
                     Note: <a href="https://github.com/VeeDoubleYuh/retail-plu-codes/issues" target="_blank" rel="noopener">Work in progress.</a>
                     <br>
-                    Currently Ray&apos;s&thinsp;/&thinsp;Shop Smart only.
+                    Currently Ray&apos;s&thinsp;/&thinsp;Shop Smart only &mdash; Codes based on La Pine, OR
                 </p>
             </div>
         </details>
@@ -1814,7 +1832,7 @@
             <table>
 
                 <caption>
-                    <h3>Floral&thinsp;/&thinsp;Flowers</h3>
+                    <h3>Flowers&thinsp;/&thinsp;Generic Floral</h3>
                 </caption>
                 <thead>
                     <tr>
@@ -1923,15 +1941,36 @@
                 </tbody>
 
             </table>
-        </section>
 
-    </section>
+            <!-- Christmas Trees -->
+            <table>
 
-    <section id="site__services"
-             class="js-search-area">
+                <caption>
+                    <h3>Christmas Trees</h3>
+                </caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col">Code&thinsp;/&thinsp;Price</th>
+                    </tr>
+                </thead>
 
-        <section>
-            <h2 class="heading--banner">Services</h2>
+                <tbody>
+                    <tr>
+                        <td>Douglas Fir 6&ndash;7&prime;</td>
+                        <td>57132&thinsp;&ndash;&thinsp;$69.99</td>
+                    </tr>
+                    <tr>
+                        <td>Noble Fir 4&ndash;6&prime;</td>
+                        <td>57132&thinsp;&ndash;&thinsp;$64.99</td>
+                    </tr>
+                    <tr>
+                        <td>Noble Fir 6&ndash;7&prime;</td>
+                        <td>57132&thinsp;&ndash;&thinsp;$69.99</td>
+                    </tr>
+                </tbody>
+
+            </table>
 
             <!-- Greeting Cards -->
             <table>
@@ -1958,6 +1997,16 @@
                 </tbody>
 
             </table>
+
+        </section>
+
+    </section>
+
+    <section id="site__services"
+             class="js-search-area">
+
+        <section>
+            <h2 class="heading--banner">Services</h2>
 
             <!-- Propane -->
             <table>
@@ -2056,6 +2105,47 @@
                     <tr>
                         <td>54127</td>
                         <td>Book</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </section>
+
+    <!-- Non Food -->
+    <section id="site__holiday"
+             class="js-search-area">
+
+        <section>
+            <h2 class="heading--banner">Seasonal&thinsp;/&thinsp;Holiday</h2>
+
+            <!-- Christmas Trees -->
+            <table>
+
+                <caption>
+                    <h3>Christmas Trees</h3>
+                </caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col">Code&thinsp;/&thinsp;Price</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Douglas Fir 6&ndash;7&prime;</td>
+                        <td>57132&thinsp;&ndash;&thinsp;$69.99</td>
+                    </tr>
+                    <tr>
+                        <td>Noble Fir 4&ndash;6&prime;</td>
+                        <td>57132&thinsp;&ndash;&thinsp;$64.99</td>
+                    </tr>
+                    <tr>
+                        <td>Noble Fir 6&ndash;7&prime;</td>
+                        <td>57132&thinsp;&ndash;&thinsp;$69.99</td>
                     </tr>
                 </tbody>
 
