@@ -4,11 +4,54 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1">
 
-    <title>Shop Smart &ndash; Code Cheat Sheet</title>
-    <meta name="description" content="Looking for a Shop Smart PLU code? Check here!">
-    <link rel="canonical" href="https://veedoubleyuh.github.io/retail-plu-codes/"/>
+    <title>Shop Smart™ – PLU Code Cheat Sheet</title>
+    <meta name="description"
+          content="Looking for a Shop Smart PLU code? Check here!">
+    <link rel="canonical"
+          href="https://veedoubleyuh.github.io/retail-plu-codes/"/>
+
+    <!-- Since things are currently only correct for La Pine, making that more obvious to Google. -->
+    <meta name="geo.region" content="US-OR"/>
+    <meta name="geo.placename" content="La Pine"/>
+    <meta name="geo.position" content="43.6704;-121.5036"/>
+    <meta name="ICBM" content="43.6704, -121.5036"/>
+
+    <!-- Only implemented for Rays/Shop Smart for now. -->
+    <meta name="theme-color"
+          media="(prefers-color-scheme: light)"
+          content="#d31531">
+    <meta name="theme-color"
+          media="(prefers-color-scheme: dark)"
+          content="#d71536">
+    <link rel="apple-touch-icon"
+          sizes="180x180"
+          href="/retail-plu-codes/assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/retail-plu-codes/assets/images/favicon/favicon-32x32.png">
+    <link rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/retail-plu-codes/assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest"
+          href="/retail-plu-codes/assets/images/favicon/site.webmanifest">
+    <link rel="mask-icon"
+          href="/retail-plu-codes/assets/images/favicon/safari-pinned-tab.svg"
+          color="#d31531">
+    <meta name="apple-mobile-web-app-title"
+          content="PLU Code Cheat Sheet">
+    <meta name="application-name"
+          content="PLU Code Cheat Sheet">
+    <meta name="msapplication-TileColor"
+          media="(prefers-color-scheme: light)"
+          content="#d31531">
+    <meta name="msapplication-TileColor"
+          media="(prefers-color-scheme: dark)"
+          content="#d71536">
 
     <!-- Since things are currently only correct for La Pine, making that more obvious to Google. -->
     <meta name="geo.region" content="US-OR"/>
@@ -45,6 +88,9 @@
           as="script">
     <link rel="modulepreload"
           href="/retail-plu-codes/assets/scripts/search.min.mjs"
+          as="script">
+    <link rel="modulepreload"
+          href="/retail-plu-codes/assets/scripts/theme-updater.min.mjs"
           as="script">
 
     <!-- Styles -->
@@ -87,12 +133,15 @@
         --size__min-touch:     3rem;
     }
     *,
-    *:where(::before, ::after) {
+    :where(::before, ::after) {
         box-sizing:      border-box;
         scroll-behavior: smooth;
     }
     ::-webkit-scrollbar {
         width: 0.75rem;
+    }
+    :focus:where(:not(:focus-visible)) {
+        outline: none
     }
     html,
     body {
@@ -161,11 +210,9 @@
         padding-block-start: 2rem;
     }
     section {
-        contain-intrinsic-size: 15.56rem;
-        content-visibility:     auto;
-        margin:                 2rem auto 0;
-        width:                  30em;
-        max-width:              100%;
+        margin:    2rem auto 0;
+        width:     30em;
+        max-width: 100%;
     }
     input,
     select,
@@ -470,7 +517,7 @@
 <header id="site__header">
     <h1 class="site__title">
         <img src="/retail-plu-codes/assets/images/shop-smart-logo.svg"
-             alt="Shop Smart&trade;"
+             alt="Shop Smart™"
              loading="eager"
              height="162.9" width="975.9"
              id="site__logo"
@@ -542,7 +589,7 @@
 
             <div class="search-details__container">
                 <p><abbr title="Price Look-Up">PLU</abbr> codes got you down? Use this form to quickly find what you&apos;re looking for!</p>
-                <p>Change theme at the <a href="#site__footer">bottom of the page</a>.</p>
+                <p>Change theme/store at the <a href="#site__footer">bottom of the page</a>.</p>
                 <p role="note">
                     Note: <a href="https://github.com/VeeDoubleYuh/retail-plu-codes/issues" target="_blank" rel="noopener">Work in progress.</a>
                     <br>
@@ -2191,7 +2238,7 @@
                 aria-label="Change Store">
             <option value="rays">Rays</option>
             <option value="shop smart"
-                    selected>Shop Smart</option>
+                    selected>Shop Smart&trade;</option>
         </select>
 
     </section>

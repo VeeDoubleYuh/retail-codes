@@ -21,6 +21,9 @@
 ::-webkit-scrollbar-thumb {
     background-color: #222;
 }
+:focus-visible {
+    outline-color: var(--color__yellow);
+}
 a:where(:hover, :focus-within) {
     color: var(--color__yellow);
 }
