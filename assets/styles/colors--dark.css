@@ -55,8 +55,19 @@ a:where(:hover, :focus-within) {
     color:  var(--color__gray--light);
 }
 @media (prefers-contrast: more) {
+
     :root {
+        --color__green:       #21ac5b;
+        --color__red:         #c40000;
         --color__gray--light: #000;
         --color__gray--dark:  #fff;
     }
+    .code--organic {
+        color:       var(--color__gray--dark);
+        font-weight: bold;
+    }
+    :where(td, th) {
+        --text-stroke: 0;
+    }
+
 }

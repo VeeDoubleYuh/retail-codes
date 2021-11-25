@@ -47,8 +47,16 @@ a:where(:hover, :focus-within) {
 @media (prefers-contrast: more) {
 
     :root {
+        --color__green:       #126633;
+        --color__red:         #c10000;
         --color__gray--light: #fff;
         --color__gray--dark:  #000;
+    }
+    .code--organic {
+        font-style: italic;
+    }
+    :where(td, th) {
+        --text-stroke: 0;
     }
 
 }
